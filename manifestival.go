@@ -25,6 +25,8 @@ type Manifestival interface {
 	Filter(fns ...Predicate) Manifest
 	// Append the resources from other Manifests to create a new one
 	Append(mfs ...Manifest) Manifest
+	// Sort the resources in a Manifest
+	Sort(lessFunc LessFunc) Manifest
 	// Show how applying the manifest would change the cluster
 	DryRun(ctx context.Context) ([]MergePatch, error)
 }

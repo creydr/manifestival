@@ -18,6 +18,7 @@ See [CHANGELOG.md](CHANGELOG.md)
   * [Sources](#sources)
   * [Append](#append)
   * [Filter](#filter)
+  * [Sort](#sort)
   * [Transform](#transform)
 * [Applying Manifests](#applying-manifests)
   * [Client](#client)
@@ -32,7 +33,7 @@ See [CHANGELOG.md](CHANGELOG.md)
 
 Manifests may be constructed from a variety of sources. Once created,
 they are immutable, but new instances may be created from them using
-their [Append], [Filter] and [Transform] functions.
+their [Append], [Filter], [Sort] and [Transform] functions.
 
 The typical way to create a manifest is by calling `NewManifest`
 
@@ -144,6 +145,25 @@ modifications made to any resource will be reflected in the returned
 `Manifest`, which is immutable. The only way to alter resources in a
 `Manifest` is with its `Transform` method.
 
+
+### Sort
+
+[Sort] enables you to reorder the resources in a manifest. This is particularly useful 
+for ensuring Kubernetes resources are applied in the correct dependency order, 
+such as applying Namespaces before namespaced resources, or ServiceAccounts before 
+Deployments use them.
+
+For Kubernetes dependency-aware sorting, use the provided `ByKindPriority()` function:
+
+```go
+// Sort by Kubernetes deployment dependencies
+// (Namespaces first, then ServiceAccounts, Secrets, ConfigMaps, etc.)
+sorted := manifest.Sort(ByKindPriority())
+```
+
+The `ByKindPriority()` function orders resources according to standard Kubernetes 
+best practices, ensuring that foundational resources like Namespaces and 
+CustomResourceDefinitions are deployed before resources that depend on them.
 
 ### Transform
 
