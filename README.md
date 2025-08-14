@@ -363,6 +363,7 @@ the returned list is valid content for the `kubectl patch` command.
 [Append]: https://godoc.org/github.com/manifestival/manifestival#Manifest.Append
 [Filter]: https://godoc.org/github.com/manifestival/manifestival#Manifest.Filter
 [Transform]: https://godoc.org/github.com/manifestival/manifestival#Manifest.Transform
+[Sort]: https://godoc.org/github.com/manifestival/manifestival#Manifest.Sort
 [Apply]: https://godoc.org/github.com/manifestival/manifestival#Manifest.Apply
 [Delete]: https://godoc.org/github.com/manifestival/manifestival#Manifest.Delete
 [DryRun]: https://godoc.org/github.com/manifestival/manifestival#Manifest.DryRun
